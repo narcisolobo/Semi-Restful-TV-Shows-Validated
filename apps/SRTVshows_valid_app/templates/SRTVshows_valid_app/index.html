@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Semi-Restful TV Shows</title>
+  <meta name="description" content="Coding Dojo assignment for Full Stack Django.">
+  <meta name="author" content="Narciso Lobo">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'SRTVshows_valid_app/css/style.css' %}">
+  <link rel="shortcut icon" type="image/png" href="{% static 'SRTVshows_valid_app/images/favicon.ico' %}" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row align-bottom">
+      <div class="col-sm-6">
+        <h1>All Shows</h1>
+      </div>
+      <div class="col-sm-6 d-flex justify-content-end"><a href="/shows" class="small">GO BACK</a></div>
+    </div>
+    <div class="row">
+      <table class="table table-light table-striped table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">NETWORK</th>
+            <th scope="col">RELEASE DATE</th>
+            <th scope="col">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for show in shows %}
+          <tr>
+            <th scope="row">{{ show.id }}</th>
+            <td>{{ show.title }}</td>
+            <td>{{ show.network }}</td>
+            <td>{{ show.release_date }}</td>
+            <td>
+              <a href="/shows/{{ show.id }}">Show</a> |
+              <a href="/shows/{{ show.id }}/edit">Edit</a> |
+              <a href="/shows/{{ show.id }}/destroy">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="col-sm-12">
+        <a href="/shows/new" role="button" class="btn btn-primary btn-lg btn-block">ADD A NEW SHOW</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
